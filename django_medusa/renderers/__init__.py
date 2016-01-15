@@ -1,9 +1,10 @@
 from django.conf import settings
-from django.utils import importlib
+from importlib import import_module
 from .base import BaseStaticSiteRenderer
 from .disk import DiskStaticSiteRenderer
 from .appengine import GAEStaticSiteRenderer
 from .s3 import S3StaticSiteRenderer
+
 
 __all__ = ('BaseStaticSiteRenderer', 'DiskStaticSiteRenderer',
            'S3StaticSiteRenderer', 'GAEStaticSiteRenderer',
@@ -12,7 +13,7 @@ __all__ = ('BaseStaticSiteRenderer', 'DiskStaticSiteRenderer',
 
 def get_cls(renderer_name):
     mod_path, cls_name = renderer_name.rsplit('.', 1)
-    mod = importlib.import_module(mod_path)
+    mod = import_module(mod_path)
     return getattr(mod, cls_name)
 
 
