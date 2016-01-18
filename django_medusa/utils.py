@@ -4,6 +4,7 @@ from django.conf import settings
 from importlib import import_module
 import sys
 
+
 def get_static_renderers():
     module_name = 'renderers'
     renderers = []
